@@ -1,0 +1,15 @@
+#!name=海雀去广告 · 仅手机
+#!desc=移除海雀开屏、横幅和弹窗广告，拦截商城和资讯页面；仅iOS生效，电脑跳过。
+#!system=iOS
+#!author=可莉（规则来源）；个人手机适配
+#!homepage=https://kelee.one/Tool/Loon/Lpx/AlcidaeVideo_remove_ads.lpx
+
+[Rewrite]
+https:\/\/app-api-32\.ihaique\.net\/api\/app\/v\d\/appad\/cmd\/AppadGetSplashAds(\?|$) mock-response-body data-type=json data="{}" status-code=200
+https:\/\/app-api-32\.ihaique\.net\/api\/app\/v\d\/appad\/cmd\/AppGetAttentionInfos(\?|$) mock-response-body data-type=json data="{}" status-code=200
+https:\/\/app-api-32\.ihaique\.net\/api\/app\/v\d\/appad\/cmd\/AppadGetBannerAds(\?|$) mock-response-body data-type=json data="{}" status-code=200
+https:\/\/g\.ihaique\.net\/alcidae\/info\/index\.html$ - reject
+https:\/\/shop151522958\.youzan\.com\/v\d\/showcase\/homepage(\?|$) - reject
+
+[Mitm]
+hostname = app-api-32.ihaique.net, g.ihaique.net, shop151522958.youzan.com
