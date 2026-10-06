@@ -5,9 +5,9 @@
 #!homepage=https://kelee.one/Tool/Loon/Lpx/AlcidaeVideo_remove_ads.lpx
 
 [Rewrite]
-^https:\/\/app-api-32\.ihaique\.net\/api\/app\/v\d\/appad\/cmd\/(?:AppadGetSplashAds|AppGetAttentionInfos|AppadGetBannerAds)(?:\?|$) mock-response-body data-type=json data="{}" status-code=200
-^https:\/\/g\.ihaique\.net\/alcidae\/info\/index\.html$ - reject
-^https:\/\/shop151522958\.youzan\.com\/v\d\/showcase\/homepage(\?|$) - reject
+^https:\/\/app-api-32\.ihaique\.net(?::443)?\/api\/app\/v\d\/appad\/cmd\/(?:AppadGetSplashAds|AppGetAttentionInfos|AppadGetBannerAds)(?:\?|$) mock-response-body data-type=json data="{}" status-code=200
+^https:\/\/g\.ihaique\.net(?::443)?\/alcidae\/info\/index\.html$ - reject
+^https:\/\/shop151522958\.youzan\.com(?::443)?\/v\d\/showcase\/homepage(\?|$) - reject
 
 [Mitm]
 hostname = app-api-32.ihaique.net, g.ihaique.net, shop151522958.youzan.com
