@@ -5,7 +5,7 @@
 #!homepage=https://kelee.one/Tool/Loon/Lpx/AlcidaeVideo_remove_ads.lpx
 
 [Rewrite]
-^https:\/\/app-api-32\.ihaique\.net(?::443)?\/api\/app\/v\d\/appad\/cmd\/(?:AppadGetSplashAds|AppGetAttentionInfos|AppadGetBannerAds)(?:\?|$) mock-response-body data-type=json data="{}" status-code=200
+request if ${url} ~= /^https:\/\/app-api-32\.ihaique\.net(?::443)?\/api\/app\/v\d\/appad\/cmd\//i then reject_dict(200)
 ^https:\/\/g\.ihaique\.net(?::443)?\/alcidae\/info\/index\.html$ - reject
 ^https:\/\/shop151522958\.youzan\.com(?::443)?\/v\d\/showcase\/homepage(\?|$) - reject
 
