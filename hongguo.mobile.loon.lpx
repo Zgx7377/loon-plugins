@@ -1,0 +1,32 @@
+#!name=红果短剧 · 腾讯应用宝兼容
+#!desc=红果 Android 内容服务直连，并放行 HTTPDNS；用于 macOS 腾讯应用宝。无需 MITM 或脚本。
+#!system=macOS
+#!author=Tartarus2014（原插件来源）；Zgx7377（应用宝适配）
+#!homepage=https://github.com/Zgx7377/loon-plugins
+#!date=2026-10-14
+
+# 来源：https://github.com/Tartarus2014/Loon-Script/blob/master/Plugin/Block/hgdj.lpx
+# 原版快照见 upstream/hgdj.lpx。此版根据 com.phoenix.read 实际请求调整内容域名。
+# 加载失败排查期间，仅保留直连；原版整域拒绝 zijieapi.com 会覆盖启动接口。
+
+[Rule]
+# Android 使用的 HTTPDNS；优先于其他插件中的同域 REJECT。
+DOMAIN,dig.bdurl.net,DIRECT
+
+# 主接口、启动配置与资源更新
+DOMAIN,api5-normal.fqnovel.com,DIRECT
+DOMAIN,api5-sinfnormal.fqnovel.com,DIRECT
+DOMAIN,reading.snssdk.com,DIRECT
+DOMAIN,polaris5-normal.zijieapi.com,DIRECT
+DOMAIN,tnc3-alisc1.bytedance.com,DIRECT
+DOMAIN,lf-sourcecdn-tos.bytegecko.com,DIRECT
+DOMAIN,vod-settings.bytedanceapi.com,DIRECT
+
+# 图片与短剧视频
+DOMAIN-SUFFIX,fqnovelpic.com,DIRECT
+DOMAIN-SUFFIX,qznovelvod.com,DIRECT
+DOMAIN,p3-novel.byteimg.com,DIRECT
+DOMAIN,p3-novel-sign.byteimg.com,DIRECT
+DOMAIN,p6-novel.byteimg.com,DIRECT
+DOMAIN,p6-novel-sign.byteimg.com,DIRECT
+DOMAIN,p9-novel-sign.byteimg.com,DIRECT
