@@ -1,5 +1,5 @@
 #!name=红果短剧 · 腾讯应用宝兼容
-#!desc=红果 Android 内容服务直连，并放行 HTTPDNS；用于 macOS 腾讯应用宝。无需 MITM 或脚本。
+#!desc=红果 Android 内容服务直连，放行 HTTPDNS，并豁免两个启动配置域名的 HTTPS 解密；用于 macOS 腾讯应用宝。无需证书或脚本。
 #!system=macOS
 #!author=Tartarus2014（原插件来源）；Zgx7377（应用宝适配）
 #!homepage=https://github.com/Zgx7377/loon-plugins
@@ -30,3 +30,7 @@ DOMAIN,p3-novel-sign.byteimg.com,DIRECT
 DOMAIN,p6-novel.byteimg.com,DIRECT
 DOMAIN,p6-novel-sign.byteimg.com,DIRECT
 DOMAIN,p9-novel-sign.byteimg.com,DIRECT
+
+[MitM]
+# 避免汽水音乐插件的 tnc*-*.zijieapi.com 通配符导致 Android TLS 失败。
+hostname = -tnc0-alisc1.zijieapi.com, -tnc0-aliec2.zijieapi.com
