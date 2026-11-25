@@ -5,7 +5,7 @@
  * Source SHA-256: 1e7c5ea5fe7d48c3f0894706ac9077de21e451df51c37e9f262a15ccc063356b
  * Adapted: 2026-11-25
  *
- * 保留原版的请求匹配、链接转换和空响应行为。
+ * 保留原版的请求匹配和链接转换；仅捕获来源请求返回空响应。
  * 使用 Safari 专用链接发送一次 Loon 通知；不回显原请求头。
  * 不读取请求体，不保存凭据，也不主动请求视频链接。
  */
@@ -42,10 +42,10 @@
           "",
           { openUrl: safariUrl }
         );
-      }
 
-      // 原版在请求阶段直接返回空响应；在 Loon 中显式补全状态和正文。
-      result = { response: { status: 200, headers: {}, body: "" } };
+        // 只终止来源请求；Safari 不带捕获头的播放请求必须正常放行。
+        result = { response: { status: 200, headers: {}, body: "" } };
+      }
     }
   } catch (error) {
     // 异常时放行，不记录可能带有签名或凭据的 URL 和请求头。
