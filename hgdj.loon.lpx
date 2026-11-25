@@ -5,8 +5,8 @@
 #!date=2026-11-25
 
 [Script]
-http-request ^https?:\/\/[^\/]+\.(cloudfront\.net|lkkwip\.cn)\/api\/app\/vid\/h5\/m3u8\/.* script-path=https://raw.githubusercontent.com/Zgx7377/loon-plugins/main/hgdj.loon.js?v=20261125-safari3, requires-body=false, timeout=10, tag=黄果短剧视频链接捕获
-http-response ^https?:\/\/[^\/:?#]+\.(?:cloudfront\.net|lkkwip\.cn)(?::\d+)?\/(?:api\/app\/vid\/h5\/m3u8\/[^?#]*|[^?#]*\.m3u8)(?:\?[^#]*)?$ script-path=https://raw.githubusercontent.com/Zgx7377/loon-plugins/main/hgdj.loon.js?v=20261125-safari3, requires-body=true, timeout=10, tag=黄果短剧Safari清单格式
+http-request ^https?:\/\/[^\/]+\.(cloudfront\.net|lkkwip\.cn)\/api\/app\/vid\/h5\/m3u8\/.* script-path=https://raw.githubusercontent.com/Zgx7377/loon-plugins/main/hgdj.loon.js?v=20261125-safari4, requires-body=false, timeout=10, tag=黄果短剧视频链接捕获
+http-response ^https?:\/\/[^\/:?#]+\.(?:cloudfront\.net|lkkwip\.cn)(?::\d+)?\/(?:api\/app\/vid\/h5\/m3u8\/[^?#]*|[^?#]*\.m3u8)(?:\?[^#]*)?$ script-path=https://raw.githubusercontent.com/Zgx7377/loon-plugins/main/hgdj.loon.js?v=20261125-safari4, requires-body=true, timeout=10, tag=黄果短剧Safari清单格式
 
 [MITM]
 hostname = *.cloudfront.net, *.lkkwip.cn
