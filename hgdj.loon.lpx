@@ -1,11 +1,11 @@
 #!name=黄果短剧 · Loon视频链接捕获
-#!desc=捕获播放请求后推送可点击链接；需允许Loon通知，点击通知打开观看。沿用原版匹配与域名转换，实际播放尚未验证。
+#!desc=捕获播放请求后推送通知；点击通知使用苹果Safari打开观看。需允许Loon通知；实际播放尚未验证。
 #!author=原脚本 彭于晏；Loon适配 Codex
 #!homepage=https://github.com/89996462/Quantumult-X/blob/main/ghs/hgdj.js
 #!date=2026-11-25
 
 [Script]
-http-request ^https?:\/\/[^\/]+\.(cloudfront\.net|lkkwip\.cn)\/api\/app\/vid\/h5\/m3u8\/.* script-path=https://raw.githubusercontent.com/Zgx7377/loon-plugins/main/hgdj.loon.js, requires-body=false, timeout=10, tag=黄果短剧视频链接捕获
+http-request ^https?:\/\/[^\/]+\.(cloudfront\.net|lkkwip\.cn)\/api\/app\/vid\/h5\/m3u8\/.* script-path=https://raw.githubusercontent.com/Zgx7377/loon-plugins/main/hgdj.loon.js?v=20261125-safari, requires-body=false, timeout=10, tag=黄果短剧视频链接捕获
 
 [MITM]
 hostname = *.cloudfront.net, *.lkkwip.cn
