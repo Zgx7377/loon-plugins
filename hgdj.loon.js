@@ -7,11 +7,39 @@
  *
  * 保留原版的请求匹配和链接转换；仅捕获来源请求返回空响应。
  * 使用 Safari 专用链接发送一次 Loon 通知；不回显原请求头。
+ * 对有效 HLS 清单修正 MIME 并移除下载附件头，保留清单正文。
  * 不读取请求体，不保存凭据，也不主动请求视频链接。
  */
 
 (function () {
   var result = {};
+
+  if (typeof $response === "object" && $response) {
+    try {
+      var responseUrl = typeof $request === "object" && $request ? $request.url : "";
+      var playlistPattern = /^https?:\/\/[^\/:?#]+\.(?:cloudfront\.net|lkkwip\.cn)(?::\d+)?\/(?:api\/app\/vid\/h5\/m3u8\/[^?#]*|[^?#]*\.m3u8)(?:\?[^#]*)?$/i;
+      var status = Number($response.status);
+      var body = $response.body;
+
+      if (playlistPattern.test(responseUrl) && (status === 200 || status === 206) &&
+          typeof body === "string" && /^#EXTM3U(?:\r?\n|$)/.test(body)) {
+        var responseHeaders = {};
+        Object.keys($response.headers || {}).forEach(function (name) {
+          var lower = name.toLowerCase();
+          if (lower !== "content-type" && lower !== "content-disposition") {
+            responseHeaders[name] = $response.headers[name];
+          }
+        });
+        responseHeaders["Content-Type"] = "application/vnd.apple.mpegurl";
+        result = { headers: responseHeaders };
+      }
+    } catch (error) {
+      console.log("黄果短剧：清单格式处理失败，已保留原响应。");
+    }
+
+    $done(result);
+    return;
+  }
 
   try {
     var request = typeof $request === "object" && $request ? $request : {};
