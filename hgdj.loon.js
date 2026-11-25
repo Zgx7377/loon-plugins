@@ -6,7 +6,7 @@
  * Adapted: 2026-11-25
  *
  * 保留原版的请求匹配、链接转换和空响应行为。
- * 使用 Loon 的 openUrl 通知，只发送一次；不回显原请求头。
+ * 使用 Safari 专用链接发送一次 Loon 通知；不回显原请求头。
  * 不读取请求体，不保存凭据，也不主动请求视频链接。
  */
 
@@ -33,11 +33,14 @@
           }
         }
 
+        // Safari 专用协议使用 HTTPS；仅替换开头，保留路径和签名参数。
+        var safariUrl = openUrl.replace(/^https?:\/\//i, "x-safari-https://");
+
         $notification.post(
           "黄果短剧 · 视频链接捕获",
-          "点击通知打开链接",
+          "点击通知用 Safari 打开",
           "",
-          { openUrl: openUrl }
+          { openUrl: safariUrl }
         );
       }
 
